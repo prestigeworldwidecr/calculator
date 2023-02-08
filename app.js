@@ -2,12 +2,16 @@
 
 /*
 
-1. input content, no error checking for the time being
-2. place on stack
-3. pop numbers, operators
-4. calculate in switch/case block
+1. input content, no error checking for the time being -- main
+2. place on stack -- parseUserInput, can do w/linkedList || ArrayList
+3. pop numbers, operators -- stackUserInput
+4. calculate in switch/case block -- calculate
 
 */
+
+// function
+
+/*
 
 const prompt = require('prompt-sync')();
 
@@ -24,3 +28,5 @@ stack.push(4);
 stack.push(5);
 
 console.log(stack);
+
+*/
