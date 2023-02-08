@@ -13,4 +13,14 @@ const prompt = require('prompt-sync')();
 
 const s = prompt('How ya doing? ');
 
-console.log(`That's great, ${s}`);
+// console.log(`That's great, ${s}`);
+
+let stack = [];
+
+stack.push(1);
+stack.push(2);
+stack.push(3);
+stack.push(4);
+stack.push(5);
+
+console.log(stack);
