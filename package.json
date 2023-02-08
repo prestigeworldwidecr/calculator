@@ -9,6 +9,7 @@
   "author": "Craig S",
   "license": "ISC",
   "dependencies": {
+    "pegjs": "^0.10.0",
     "prompt-sync": "^4.2.0"
   }
 }
