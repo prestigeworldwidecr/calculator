@@ -29,14 +29,14 @@ function parseUserInput(s)
     
     while (s.length > 0)
     {
-        tmp = s[i]
+        tmp = s[0]
 
         if (tmp == '+' || tmp == '-' || tmp == '*' || tmp == '/' || tmp == '(' || tmp == ')')
         {
             exp.push(tmp);
         }
 
-        else if (Number.isInteger (tmp))
+        else if (Number.isInteger (parseInt(s)))
         {
             tmp = parseInt(s);
             exp.push(tmp);
