@@ -22,24 +22,7 @@ function init ()
 
 function parseUserInput(s)
 {
-    let temp = '';
-    let i = 0;
-    // let exp = [];
-
-    // console.log(parseInt(s));
-    // console.log(parseInt(s));
-
-    /*
-
-    while (parseInt(s) != null)
-    {
-        parseInt(s);
-        i++;
-    }
-
-    */
-
-    // console.log(i);
+    
 }
 
 /*
@@ -61,5 +44,21 @@ stack.push(5);
 console.log(stack);
 
 // init();
+
+// let exp = [];
+
+    // console.log(parseInt(s));
+    // console.log(parseInt(s));
+
+    while (parseInt(s) != null)
+    {
+        parseInt(s);
+        i++;
+    }
+
+    // console.log(i);
+
+    let temp = '';
+    let i = 0;
 
 */
