@@ -13,62 +13,73 @@ const { parse } = require('pegjs/lib/parser');
 
 init();
 
-// 1. prompt user for input
+
 function init ()
 {
     const prompt = require('prompt-sync')();
     let s = [];
     s = prompt('Provide expression for calculation$ ');
-    parseUserInput(s);
+    parseUserInput(s.trim());
 }
 
 function parseUserInput(s)
 {
-    for (let i = 0; i < s.length; i++)
+    let tmp = '';
+    let exp = [];
+    
+    while (s.length > 0)
     {
-        let tmp = s[i];
-        console.log('!0', i, tmp, s);
+        let tmp = s[0];
     
         switch(tmp)
         {
             case '+':
-                console.log('!1', tmp, i, s);
+                
                 break;
             case '-':
-                console.log('!2', tmp, i, s);
+                
                 break;
             case '/':
-                console.log('!3', tmp, i, s);
+                
                 break;
             case '*':
-                console.log('!4', tmp, i, s);   
+                   
                 break;
             default:
-                tmp1 = parseInt(s);
+                tmp = parseInt(s);
             
-                if (Number.isInteger (tmp1))
+                if (Number.isInteger (tmp))
                 {
-                    s = s.substr(i + tmp1.toString().length, s.length);
-                    // i = i + tmp1.toString().length;
-                    i = 0;
-                    console.log('!5', tmp1, i, s, s[i]);
+                    
                 }
                 
                 else
                 {
-                    console.log('!6', tmp, i, s);   
+                       
                 }
 
                 break;         
         }
+
+        // console.log('!', tmp, s);
+        exp.push(tmp);
+        s = s.substr(tmp.toString().length, s.length);
     }
 
-    // 66+6
-    // 0123
-    /*
+    console.log(exp.pop());
+}
 
-    /*
-        
+/*
+
+// for (let i = 0; i < s.length; i++)
+
+// s = s.substr(i + tmp.toString().length, s.length);
+
+                    // i = i + tmp1.toString().length;
+                    // i = -1;
+                    // console.log('!5', tmp, i, s, s[i]);        
+
+
         let tmp = parseInt(s);
         
         if (Number.isInteger (tmp))
@@ -108,11 +119,6 @@ function parseUserInput(s)
             console.log(tmp);   
             break;         
     }
-
-    */
-}
-
-/*
 
 const prompt = require('prompt-sync')();
 
