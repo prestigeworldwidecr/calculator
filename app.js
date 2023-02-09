@@ -3,13 +3,44 @@
 /*
 
 1. input content, no error checking for the time being -- main
-2. place on stack -- parseUserInput, can do w/linkedList || ArrayList
+.. don't need to, store the elements into an array XX 2. place on stack -- parseUserInput, can do w/linkedList || ArrayList
 3. pop numbers, operators -- stackUserInput
 4. calculate in switch/case block -- calculate
 
 */
 
-// function
+init();
+
+// 1. prompt user for input
+function init ()
+{
+    const prompt = require('prompt-sync')();
+    let s = [];
+    s = prompt('Provide expression for calculation$ ');
+    parseUserInput(s);
+}
+
+function parseUserInput(s)
+{
+    let temp = '';
+    let i = 0;
+    // let exp = [];
+
+    // console.log(parseInt(s));
+    // console.log(parseInt(s));
+
+    /*
+
+    while (parseInt(s) != null)
+    {
+        parseInt(s);
+        i++;
+    }
+
+    */
+
+    // console.log(i);
+}
 
 /*
 
@@ -28,5 +59,7 @@ stack.push(4);
 stack.push(5);
 
 console.log(stack);
+
+// init();
 
 */
