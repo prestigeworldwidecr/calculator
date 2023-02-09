@@ -89,7 +89,7 @@ function parseUserInput(s)
             exp.push(tmp);
         }
 
-        else if (Number.isInteger (parseInt(s)))
+        else if (isNumber(s))
         {
             tmp = parseInt(s);
             exp.push(tmp);
@@ -108,9 +108,22 @@ function parseUserInput(s)
 
 }
 
-function isOperator(c)
+function isNumber(tmp)
 {
-    if (c == '+' || c == '-' || c == '*' || c == '/' || c == '(' || c == ')')
+    if (Number.isInteger (parseInt(tmp)))
+    {
+        return true;
+    }
+
+    else
+    {
+        return false;
+    }
+}
+
+function isOperator(tmp)
+{
+    if (tmp == '+' || tmp == '-' || tmp == '*' || tmp == '/' || tmp == '(' || tmp == ')')
     {
         return true;
     }
@@ -123,14 +136,30 @@ function isOperator(c)
 
 function calculate(exp)
 {
-    const s = new Stack();
+    const nums = new Stack();
+    const ops = new Stack();
 
     for (let i = 0; i < exp.length; i++)
     {
-        s.push(exp[i]);
+        if (isOperator(exp[i]))
+        {
+            ops.push(exp[i]);
+        }
+
+        else if (isNumber(exp[i]))
+        {
+            nums.push(exp[i]);
+        }
+
+        else
+        {
+
+        }
+        
     }
 
-    
+    nums.print();
+    ops.print();
 }
 
 init();
