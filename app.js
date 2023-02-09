@@ -5,14 +5,65 @@ const { parse } = require('pegjs/lib/parser');
 /*
 
 1. input content, no error checking for the time being -- init
-2. place on stack -- parseUserInput
-3. pop numbers, operators -- stackUserInput
+2. place in array -- parseUserInput
+3. create Stack class
 4. calculate in switch/case block -- calculate
 
 */
 
-init();
+class Stack
+{
+    stack = [];
+    
+    Stack()
+    {
+        // stack = []
+    }
 
+    isEmpty()
+    {
+        if (this.stack.length == 0)
+        {
+            return true;
+        }
+
+        else
+        {
+            return false;
+        }
+    }
+
+    push(tmp)
+    {
+        this.stack.push(tmp);
+    }
+
+    pop()
+    {
+        if (isEmpty())
+        {
+            return null;
+        }
+
+        else
+        {
+            return this.stack.pop();
+        }
+    }
+
+    peek()
+    {
+
+    }
+
+    print()
+    {
+        while(!this.isEmpty())
+        {
+            console.log(this.stack.pop());
+        }
+    }
+}
 
 function init ()
 {
@@ -31,7 +82,7 @@ function parseUserInput(s)
     {
         tmp = s[0]
 
-        if (tmp == '+' || tmp == '-' || tmp == '*' || tmp == '/' || tmp == '(' || tmp == ')')
+        if (isOperator(tmp))
         {
             exp.push(tmp);
         }
@@ -50,9 +101,41 @@ function parseUserInput(s)
         s = s.substr(tmp.toString().length, s.length);
     }
 
-    console.log(exp);
+    // console.log(exp);
+    calculate(exp);
 
 }
+
+function isOperator(c)
+{
+    if (c == '+' || c == '-' || c == '*' || c == '/' || c == '(' || c == ')')
+    {
+        return true;
+    }
+
+    else
+    {
+        return false;
+    }
+}
+
+function calculate(exp)
+{
+    const s = new Stack();
+
+    // console.log(exp);
+
+    for (let i = 0; i < exp.length; i++)
+    {
+        // console.log(exp[i]);
+        s.push(exp[i]);
+    }
+
+    s.print();
+
+}
+
+init();
 
 /*
 
