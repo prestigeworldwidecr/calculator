@@ -56,6 +56,10 @@ function parseUserInput(s)
 
 /*
 
+--------------
+CODE GRAVEYARD
+--------------
+
     while (s.length > 0)
     {
         let tmp = s[0];
