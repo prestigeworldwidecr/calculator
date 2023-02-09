@@ -29,6 +29,35 @@ function parseUserInput(s)
     
     while (s.length > 0)
     {
+        tmp = s[i]
+
+        if (tmp == '+' || tmp == '-' || tmp == '*' || tmp == '/' || tmp == '(' || tmp == ')')
+        {
+            exp.push(tmp);
+        }
+
+        else if (Number.isInteger (tmp))
+        {
+            tmp = parseInt(s);
+            exp.push(tmp);
+        }
+
+        else
+        {
+            // ignore non-operators, numbers
+        }
+            
+        s = s.substr(tmp.toString().length, s.length);
+    }
+
+    console.log(exp);
+
+}
+
+/*
+
+    while (s.length > 0)
+    {
         let tmp = s[0];
     
         switch(tmp)
@@ -67,9 +96,6 @@ function parseUserInput(s)
     }
 
     console.log(exp.pop());
-}
-
-/*
 
 // for (let i = 0; i < s.length; i++)
 
