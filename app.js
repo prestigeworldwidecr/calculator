@@ -53,7 +53,9 @@ class Stack
 
     peek()
     {
-
+        let tmp = this.stack.pop();
+        this.push(tmp);
+        return tmp;
     }
 
     print()
@@ -123,16 +125,12 @@ function calculate(exp)
 {
     const s = new Stack();
 
-    // console.log(exp);
-
     for (let i = 0; i < exp.length; i++)
     {
-        // console.log(exp[i]);
         s.push(exp[i]);
     }
 
-    s.print();
-
+    
 }
 
 init();
