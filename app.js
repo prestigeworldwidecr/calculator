@@ -22,6 +22,8 @@ class Stack
 
     isEmpty()
     {
+        // console.log(this.stack.length);
+        
         if (this.stack.length == 0)
         {
             return true;
@@ -40,7 +42,7 @@ class Stack
 
     pop()
     {
-        if (isEmpty())
+        if (this.isEmpty())
         {
             return null;
         }
@@ -53,9 +55,18 @@ class Stack
 
     peek()
     {
-        let tmp = this.stack.pop();
-        this.push(tmp);
-        return tmp;
+        if (!this.isEmpty())
+        {
+            let tmp = this.stack.pop();
+            this.push(tmp);
+            return tmp;
+        }
+
+        else
+        {
+            return null;
+        }
+        
     }
 
     print()
@@ -177,27 +188,31 @@ function hasPrecedence(op1, op2)
 // v1 op v2
 function singleOperation(v1, op, v2)
 {
-    let r = null; // result
-
+    let r; // result
+    
     switch (op)
     {
         case '+':
-            return v1 + v2;
+            r = v1 + v2;
             break;
         case '-':
-            return v1 - v2;
+            r = v1 - v2;
             break;
         case '*':
-            return v1 * v2;
+            r = v1 * v2;
             break;
         case '/':
-            return v1 / v2;
+            r = v1 / v2;
             break;
         default:
             console.log("Invalid expression");
             return init();
             break;
     }
+
+    console.log(r);
+    
+    return r;
 }
 
 function calculate(exp)
@@ -210,26 +225,50 @@ function calculate(exp)
   
     for (let i = 0; i < exp.length; i++)
     {
-        if (isOperator(exp[i]))
-        {
-            ops.push(exp[i]);
+        v1 = exp[i];
+        v2 = ops.peek();
+
+        console.log(v1, v2, i, exp.length)
+
+        if (isOperator(v1))
+        {            
+            if (isOperator(v2) && hasPrecedence(v1, v2) || v2 == null)
+            {
+                ops.push(v1);
+            }
+            
+            else
+            {
+                v1 = nums.pop();
+                op = ops.pop();
+                v2 = nums.pop();
+                nums.push(singleOperation(v1, op, v2));
+            }
         }
 
-        else if (isNumber(exp[i]))
+        else if (isNumber(v1) && (i != exp.length - 1))
         {
-            nums.push(exp[i]);
+            nums.push(v1);
+            console.log('!( ', v1);
+        }
+
+        else if(i == exp.length - 1)
+        {
+            op = ops.pop();
+            v2 = nums.pop();
+            nums.push(singleOperation(v1, op, v2));
         }
 
         else
         {
-            console.log("Invalid expression");
+            console.log("!) Invalid expression");
             return init();
         }
         
     }
 
-    // nums.print();
-    // ops.print();
+    console.log (nums.pop());
+
 }
 
 init();
