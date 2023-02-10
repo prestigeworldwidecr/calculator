@@ -97,20 +97,19 @@ function parseUserInput(s)
 
         else
         {
-            // ignore non-operators, numbers
+            console.log("Invalid expression");
+            return init();
         }
             
         s = s.substr(tmp.toString().length, s.length);
     }
 
-    // console.log(exp[exp.length - 1]);
     tmp = exp[exp.length - 1];
 
     // last token must a number
     if (isNumber(tmp) || tmp == ')')
     {
-        // return calculate(exp);
-        console.log('!');
+        return calculate(exp);
     }    
 
     else
@@ -147,6 +146,60 @@ function isOperator(tmp)
     }
 }
 
+// return true if op1 has precedence
+function hasPrecedence(op1, op2)
+{
+    if (op1 == '+' || op1 == '-')
+    {
+        return false;
+    }
+
+    else if (op1 == '*' || op1 == '/')
+    {
+        if (op2 == '+' || op2 == '-')
+        {
+            return true;
+        }
+
+        else
+        {
+            return false;
+        }
+    }
+
+    else
+    {
+        return true;
+    }
+}
+
+// return result of single mathematical operation
+// v1 op v2
+function singleOperation(v1, op, v2)
+{
+    let r = null; // result
+
+    switch (op)
+    {
+        case '+':
+            return v1 + v2;
+            break;
+        case '-':
+            return v1 - v2;
+            break;
+        case '*':
+            return v1 * v2;
+            break;
+        case '/':
+            return v1 / v2;
+            break;
+        default:
+            console.log("Invalid expression");
+            return init();
+            break;
+    }
+}
+
 function calculate(exp)
 {
     const nums = new Stack();
@@ -169,6 +222,7 @@ function calculate(exp)
 
         else
         {
+            console.log("Invalid expression");
             return init();
         }
         
