@@ -103,8 +103,21 @@ function parseUserInput(s)
         s = s.substr(tmp.toString().length, s.length);
     }
 
-    // console.log(exp);
-    calculate(exp);
+    // console.log(exp[exp.length - 1]);
+    tmp = exp[exp.length - 1];
+
+    // last token must a number
+    if (isNumber(tmp) || tmp == ')')
+    {
+        // return calculate(exp);
+        console.log('!');
+    }    
+
+    else
+    {
+        console.log("Invalid expression");
+        return init();
+    }
 
 }
 
@@ -138,7 +151,10 @@ function calculate(exp)
 {
     const nums = new Stack();
     const ops = new Stack();
-
+    let v1 = null;
+    let v2 = null;
+    let op = '';
+  
     for (let i = 0; i < exp.length; i++)
     {
         if (isOperator(exp[i]))
@@ -153,13 +169,13 @@ function calculate(exp)
 
         else
         {
-
+            return init();
         }
         
     }
 
-    nums.print();
-    ops.print();
+    // nums.print();
+    // ops.print();
 }
 
 init();
