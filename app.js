@@ -108,8 +108,7 @@ function parseUserInput(s)
 
         else
         {
-            console.log("Invalid expression");
-            return init();
+            exit();
         }
             
         s = s.substr(tmp.toString().length, s.length);
@@ -125,8 +124,7 @@ function parseUserInput(s)
 
     else
     {
-        console.log("Invalid expression");
-        return init();
+        return exit();
     }
 
 }
@@ -157,30 +155,16 @@ function isOperator(tmp)
     }
 }
 
-// return true if op1 has precedence
-function hasPrecedence(op1, op2)
+function isAddSub(op)
 {
     if (op1 == '+' || op1 == '-')
     {
-        return false;
-    }
-
-    else if (op1 == '*' || op1 == '/')
-    {
-        if (op2 == '+' || op2 == '-')
-        {
-            return true;
-        }
-
-        else
-        {
-            return false;
-        }
+        return true;
     }
 
     else
     {
-        return true;
+        return false;
     }
 }
 
@@ -205,19 +189,110 @@ function singleOperation(v1, op, v2)
             r = v1 / v2;
             break;
         default:
-            console.log("Invalid expression");
-            return init();
+            exit();
             break;
     }
-
-    console.log(r);
     
     return r;
 }
 
+function exit()
+{
+    console.log("Invalid expression");
+    return null;
+}
+
+
 function calculate(exp)
 {
     const nums = new Stack();
+    const ops = new Stack();
+    const res = new Stack();
+    let v1 = null;
+    let v2 = null;
+    let op = null;
+    let tmp = null;
+
+    for (let i = 0; i < exp.length; i++)
+    {
+        tmp = exp[i];
+
+        if (isOperator(tmp))
+        {            
+            op = tmp;
+            
+            if (ops.isEmpty())
+            {
+                console.log('!', i);
+                ops.push(op);
+            }
+            
+            // operator can't be the last token
+            // example: 7 + 9 *
+            else if (i = exp.length - 1)
+            {
+                exit();
+            }
+
+            else
+            {
+                if (isAddSub(op))
+                {
+                    ops.push(op);
+                }
+
+                else
+                {
+                    
+                }
+            }
+
+        }
+
+        else
+        {
+            if (nums.isEmpty())
+            {
+                console.log('@', i);
+                nums.push(tmp);
+            }
+
+            else if ((i == exp.length - 1) && !nums.isEmpty() && !ops.isEmpty())
+            {
+                v1 = nums.pop();
+                v2 = tmp;
+                op = ops.pop();
+                nums.push(singleOperation(v1, op, v2));
+            }
+
+        }
+        
+    }
+    
+}
+
+init();
+
+/*
+
+--------------
+CODE GRAVEYARD
+--------------
+
+if (isOperator(v2) && hasPrecedence(v1, v2) || v2 == null)
+            {
+                ops.push(v1);
+            }
+            
+            else
+            {
+                v1 = nums.pop();
+                op = ops.pop();
+                v2 = nums.pop();
+                nums.push(singleOperation(v1, op, v2));
+            }
+
+const nums = new Stack();
     const ops = new Stack();
     let v1 = null;
     let v2 = null;
@@ -268,16 +343,6 @@ function calculate(exp)
     }
 
     console.log (nums.pop());
-
-}
-
-init();
-
-/*
-
---------------
-CODE GRAVEYARD
---------------
 
     while (s.length > 0)
     {
